@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9028a07a9a784f71831b7cf8357df9f5" Name="Diagram1">
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_cliente" Width="1.5" PointX="2.25" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_conta" Width="1.5" PointX="3.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_controleponto" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_descontos" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_despesa" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_estoque" Width="1.5" PointX="3.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_folha" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_forncedor" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_funcionario" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_hora_extra" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_login" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_pedido_compra" Width="1.5" PointX="1.5" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_pedido_compra_item" Width="1.5" PointX="3.75" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_pedido_venda" Width="1.5" PointX="4.5" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_pedido_venda_item" Width="1.5" PointX="6.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_produto" Width="1.5" PointX="1.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a4fdf1_basiModel.tb_provento" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.pedido_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.aa" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.aaaaaaa" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_descontos" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.tb_descontos_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_estoooque" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_fuuuuuunc" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_for" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_pro" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_funcionario" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_proventos" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_fornencedor" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.bskgd" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.tb_hora_extra_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_pedido_compra" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_pr" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.pedido_venda_item_para_pedido_venda" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a4fdf1_basiModel.id_produt" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

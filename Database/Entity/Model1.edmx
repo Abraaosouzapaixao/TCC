@@ -1,0 +1,1312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_a4fdf1_basiModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_cliente" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_endereco" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_cidade" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_email" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="vl_cpf" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="vl_tel" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="vl_cep" Type="int" Nullable="false" />
+          <Property Name="sexo" Type="enum" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_conta">
+          <Key>
+            <PropertyRef Name="id_Conta" />
+          </Key>
+          <Property Name="id_Conta" Type="int" Nullable="false" />
+          <Property Name="id_fornecedor" Type="int" Nullable="false" />
+          <Property Name="nm_referente" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="dt_emissao" Type="date" Nullable="false" />
+          <Property Name="dt_venc_pago" Type="date" Nullable="false" />
+          <Property Name="ContaPagar" Type="blob" />
+          <Property Name="ContaReceber" Type="blob" />
+          <Property Name="bl_PagarReceber" Type="bool" Nullable="false" />
+          <Property Name="vl_conta" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_controleponto">
+          <Key>
+            <PropertyRef Name="id_ControlePonto" />
+          </Key>
+          <Property Name="id_ControlePonto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+          <Property Name="dt_entrada" Type="date" Nullable="false" />
+          <Property Name="dt_entrada_almoco" Type="time" Precision="0" Nullable="false" />
+          <Property Name="dt_saida_almoco" Type="time" Precision="0" Nullable="false" />
+          <Property Name="dt_saida" Type="date" Nullable="false" />
+          <Property Name="dt_data" Type="date" Nullable="false" />
+          <Property Name="vl_faltas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_descontos">
+          <Key>
+            <PropertyRef Name="id_descontos" />
+          </Key>
+          <Property Name="id_descontos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+          <Property Name="vl_inss" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="vl_ir" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vl_va" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vl_vr" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vl_vt" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vl_planosaude" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vl_planoodonto" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="vl_segurodevida" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="tb_despesa">
+          <Key>
+            <PropertyRef Name="id_FluxAux" />
+          </Key>
+          <Property Name="id_FluxAux" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Funcinario" Type="int" Nullable="false" />
+          <Property Name="id_Estoque" Type="int" Nullable="false" />
+          <Property Name="vl_Despesa" Type="decimal" Precision="15" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_estoque">
+          <Key>
+            <PropertyRef Name="id_estoque" />
+          </Key>
+          <Property Name="id_estoque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_forncedor" Type="int" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="qnt_produto" Type="int" Nullable="false" />
+          <Property Name="dt_entrada" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="dt_saida" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_folha">
+          <Key>
+            <PropertyRef Name="id_folha" />
+          </Key>
+          <Property Name="id_folha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_descontos" Type="int" Nullable="false" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+          <Property Name="id_proventos" Type="int" Nullable="false" />
+          <Property Name="vl_valorBruto" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="vl_valorLiquido" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="bl_ferias" Type="bool" Nullable="false" />
+          <Property Name="bl_venderFerias" Type="bool" Nullable="false" />
+          <Property Name="bl_13salario" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_forncedor">
+          <Key>
+            <PropertyRef Name="id_Forncedor" />
+          </Key>
+          <Property Name="id_Forncedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_Fornecedor" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_endereco" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_cidade" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="nm_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="vl_tel" Type="int" Nullable="false" />
+          <Property Name="cnpj" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="cpf" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_funcionario">
+          <Key>
+            <PropertyRef Name="id_funcionario" />
+          </Key>
+          <Property Name="id_funcionario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_funcionario" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="nm_email" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_endereco" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_cargo" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_funcao" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="rg" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="cpf" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="dt_nasc" Type="date" Nullable="false" />
+          <Property Name="vl_tel" Type="int" Nullable="false" />
+          <Property Name="vl_salario" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="vl_cargahor" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dt_contratação" Type="date" Nullable="false" />
+          <Property Name="dt_demissao" Type="date" Nullable="false" />
+          <Property Name="vl_fgts" Type="decimal" Precision="10" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_hora_extra">
+          <Key>
+            <PropertyRef Name="id_hora_extra" />
+          </Key>
+          <Property Name="id_hora_extra" Type="int" Nullable="false" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+          <Property Name="dt_data" Type="date" Nullable="false" />
+          <Property Name="dt_horaEntrada" Type="time" Precision="0" Nullable="false" />
+          <Property Name="dt_horaSaida" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_login">
+          <Key>
+            <PropertyRef Name="id_login" />
+          </Key>
+          <Property Name="id_login" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_funcionario" Type="int" Nullable="false" />
+          <Property Name="nm_usuario" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nm_senha" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="cd_confirmacao" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tb_pedido_compra">
+          <Key>
+            <PropertyRef Name="id_pedido_compra" />
+          </Key>
+          <Property Name="id_pedido_compra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Fornecedor" Type="int" Nullable="false" />
+          <Property Name="dt_Compra" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ContaPagar" Type="blob" Nullable="false" />
+          <Property Name="dt_vencimento" Type="date" Nullable="false" />
+          <Property Name="dt_emissao" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pedido_compra_item">
+          <Key>
+            <PropertyRef Name="id_pedido_compra_item" />
+          </Key>
+          <Property Name="id_pedido_compra_item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="id_pedido" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pedido_venda">
+          <Key>
+            <PropertyRef Name="id_pedido_venda" />
+          </Key>
+          <Property Name="id_pedido_venda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" Nullable="false" />
+          <Property Name="dt_venda" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pedido_venda_item">
+          <Key>
+            <PropertyRef Name="id_pedido_venda_item" />
+          </Key>
+          <Property Name="id_pedido_venda_item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_produto" Type="int" Nullable="false" />
+          <Property Name="id_pedido_venda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_produto">
+          <Key>
+            <PropertyRef Name="id_produto" />
+          </Key>
+          <Property Name="id_produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_produto" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_marca" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="nm_categoria" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="vl_preco" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nm_lote" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="dt_validade" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_provento">
+          <Key>
+            <PropertyRef Name="id_provento" />
+          </Key>
+          <Property Name="id_provento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt_horasextras" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="dt_adicnoturno" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="vl_Perioclosidade" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="vl-Insulibridade" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="vl_Gratificacao" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="aa">
+          <End Role="tb_forncedor" Type="Self.tb_forncedor" Multiplicity="1" />
+          <End Role="tb_conta" Type="Self.tb_conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_forncedor">
+              <PropertyRef Name="id_Forncedor" />
+            </Principal>
+            <Dependent Role="tb_conta">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aaaaaaa">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_controleponto" Type="Self.tb_controleponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_controleponto">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bskgd">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_login" Type="Self.tb_login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_login">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_descontos">
+          <End Role="tb_descontos" Type="Self.tb_descontos" Multiplicity="1" />
+          <End Role="tb_folha" Type="Self.tb_folha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_descontos">
+              <PropertyRef Name="id_descontos" />
+            </Principal>
+            <Dependent Role="tb_folha">
+              <PropertyRef Name="id_descontos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_estoooque">
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="1" />
+          <End Role="tb_despesa" Type="Self.tb_despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_estoque">
+              <PropertyRef Name="id_estoque" />
+            </Principal>
+            <Dependent Role="tb_despesa">
+              <PropertyRef Name="id_Estoque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_for">
+          <End Role="tb_forncedor" Type="Self.tb_forncedor" Multiplicity="1" />
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_forncedor">
+              <PropertyRef Name="id_Forncedor" />
+            </Principal>
+            <Dependent Role="tb_estoque">
+              <PropertyRef Name="id_forncedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_fornencedor">
+          <End Role="tb_forncedor" Type="Self.tb_forncedor" Multiplicity="1" />
+          <End Role="tb_pedido_compra" Type="Self.tb_pedido_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_forncedor">
+              <PropertyRef Name="id_Forncedor" />
+            </Principal>
+            <Dependent Role="tb_pedido_compra">
+              <PropertyRef Name="id_Fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_funcionario">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_folha" Type="Self.tb_folha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_folha">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_fuuuuuunc">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_despesa" Type="Self.tb_despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_despesa">
+              <PropertyRef Name="id_Funcinario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pedido_compra">
+          <End Role="tb_pedido_compra" Type="Self.tb_pedido_compra" Multiplicity="1" />
+          <End Role="tb_pedido_compra_item" Type="Self.tb_pedido_compra_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pedido_compra">
+              <PropertyRef Name="id_pedido_compra" />
+            </Principal>
+            <Dependent Role="tb_pedido_compra_item">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pr">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_pedido_compra_item" Type="Self.tb_pedido_compra_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_pedido_compra_item">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pro">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_estoque">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_produt">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_pedido_venda_item" Type="Self.tb_pedido_venda_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_pedido_venda_item">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_proventos">
+          <End Role="tb_provento" Type="Self.tb_provento" Multiplicity="1" />
+          <End Role="tb_folha" Type="Self.tb_folha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_provento">
+              <PropertyRef Name="id_provento" />
+            </Principal>
+            <Dependent Role="tb_folha">
+              <PropertyRef Name="id_proventos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido cliente">
+          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="1" />
+          <End Role="tb_pedido_venda" Type="Self.tb_pedido_venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="tb_pedido_venda">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido_venda_item para pedido_venda">
+          <End Role="tb_pedido_venda" Type="Self.tb_pedido_venda" Multiplicity="1" />
+          <End Role="tb_pedido_venda_item" Type="Self.tb_pedido_venda_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pedido_venda">
+              <PropertyRef Name="id_pedido_venda" />
+            </Principal>
+            <Dependent Role="tb_pedido_venda_item">
+              <PropertyRef Name="id_pedido_venda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_descontos_ibfk_1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_descontos" Type="Self.tb_descontos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_descontos">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_hora_extra_ibfk_1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_hora_extra" Type="Self.tb_hora_extra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_hora_extra">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a4fdf1_basiModelStoreContainer">
+          <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_conta" EntityType="Self.tb_conta" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_controleponto" EntityType="Self.tb_controleponto" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_descontos" EntityType="Self.tb_descontos" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_despesa" EntityType="Self.tb_despesa" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_estoque" EntityType="Self.tb_estoque" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_folha" EntityType="Self.tb_folha" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_forncedor" EntityType="Self.tb_forncedor" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_funcionario" EntityType="Self.tb_funcionario" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_hora_extra" EntityType="Self.tb_hora_extra" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_login" EntityType="Self.tb_login" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_pedido_compra" EntityType="Self.tb_pedido_compra" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_pedido_compra_item" EntityType="Self.tb_pedido_compra_item" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_pedido_venda" EntityType="Self.tb_pedido_venda" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_pedido_venda_item" EntityType="Self.tb_pedido_venda_item" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_produto" EntityType="Self.tb_produto" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <EntitySet Name="tb_provento" EntityType="Self.tb_provento" Schema="db_a4fdf1_basi" store:Type="Tables" />
+          <AssociationSet Name="aa" Association="Self.aa">
+            <End Role="tb_forncedor" EntitySet="tb_forncedor" />
+            <End Role="tb_conta" EntitySet="tb_conta" />
+          </AssociationSet>
+          <AssociationSet Name="aaaaaaa" Association="Self.aaaaaaa">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_controleponto" EntitySet="tb_controleponto" />
+          </AssociationSet>
+          <AssociationSet Name="bskgd" Association="Self.bskgd">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_login" EntitySet="tb_login" />
+          </AssociationSet>
+          <AssociationSet Name="id_descontos" Association="Self.id_descontos">
+            <End Role="tb_descontos" EntitySet="tb_descontos" />
+            <End Role="tb_folha" EntitySet="tb_folha" />
+          </AssociationSet>
+          <AssociationSet Name="id_estoooque" Association="Self.id_estoooque">
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+            <End Role="tb_despesa" EntitySet="tb_despesa" />
+          </AssociationSet>
+          <AssociationSet Name="id_for" Association="Self.id_for">
+            <End Role="tb_forncedor" EntitySet="tb_forncedor" />
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+          </AssociationSet>
+          <AssociationSet Name="id_fornencedor" Association="Self.id_fornencedor">
+            <End Role="tb_forncedor" EntitySet="tb_forncedor" />
+            <End Role="tb_pedido_compra" EntitySet="tb_pedido_compra" />
+          </AssociationSet>
+          <AssociationSet Name="id_funcionario" Association="Self.id_funcionario">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_folha" EntitySet="tb_folha" />
+          </AssociationSet>
+          <AssociationSet Name="id_fuuuuuunc" Association="Self.id_fuuuuuunc">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_despesa" EntitySet="tb_despesa" />
+          </AssociationSet>
+          <AssociationSet Name="id_pedido_compra" Association="Self.id_pedido_compra">
+            <End Role="tb_pedido_compra" EntitySet="tb_pedido_compra" />
+            <End Role="tb_pedido_compra_item" EntitySet="tb_pedido_compra_item" />
+          </AssociationSet>
+          <AssociationSet Name="id_pr" Association="Self.id_pr">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_pedido_compra_item" EntitySet="tb_pedido_compra_item" />
+          </AssociationSet>
+          <AssociationSet Name="id_pro" Association="Self.id_pro">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+          </AssociationSet>
+          <AssociationSet Name="id_produt" Association="Self.id_produt">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_pedido_venda_item" EntitySet="tb_pedido_venda_item" />
+          </AssociationSet>
+          <AssociationSet Name="id_proventos" Association="Self.id_proventos">
+            <End Role="tb_provento" EntitySet="tb_provento" />
+            <End Role="tb_folha" EntitySet="tb_folha" />
+          </AssociationSet>
+          <AssociationSet Name="pedido cliente" Association="Self.pedido cliente">
+            <End Role="tb_cliente" EntitySet="tb_cliente" />
+            <End Role="tb_pedido_venda" EntitySet="tb_pedido_venda" />
+          </AssociationSet>
+          <AssociationSet Name="pedido_venda_item para pedido_venda" Association="Self.pedido_venda_item para pedido_venda">
+            <End Role="tb_pedido_venda" EntitySet="tb_pedido_venda" />
+            <End Role="tb_pedido_venda_item" EntitySet="tb_pedido_venda_item" />
+          </AssociationSet>
+          <AssociationSet Name="tb_descontos_ibfk_1" Association="Self.tb_descontos_ibfk_1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_descontos" EntitySet="tb_descontos" />
+          </AssociationSet>
+          <AssociationSet Name="tb_hora_extra_ibfk_1" Association="Self.tb_hora_extra_ibfk_1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_hora_extra" EntitySet="tb_hora_extra" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_a4fdf1_basiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_cliente" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_endereco" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_cidade" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_cpf" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_tel" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_cep" Type="Int32" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_pedido_venda" Relationship="Self.pedido_cliente" FromRole="tb_cliente" ToRole="tb_pedido_venda" />
+        </EntityType>
+        <EntityType Name="tb_conta">
+          <Key>
+            <PropertyRef Name="id_Conta" />
+          </Key>
+          <Property Name="id_Conta" Type="Int32" Nullable="false" />
+          <Property Name="id_fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="nm_referente" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_emissao" Type="DateTime" Nullable="false" />
+          <Property Name="dt_venc_pago" Type="DateTime" Nullable="false" />
+          <Property Name="ContaPagar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ContaReceber" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="bl_PagarReceber" Type="Boolean" Nullable="false" />
+          <Property Name="vl_conta" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_forncedor" Relationship="Self.aa" FromRole="tb_conta" ToRole="tb_forncedor" />
+        </EntityType>
+        <EntityType Name="tb_controleponto">
+          <Key>
+            <PropertyRef Name="id_ControlePonto" />
+          </Key>
+          <Property Name="id_ControlePonto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="dt_entrada" Type="DateTime" Nullable="false" />
+          <Property Name="dt_entrada_almoco" Type="Time" Nullable="false" />
+          <Property Name="dt_saida_almoco" Type="Time" Nullable="false" />
+          <Property Name="dt_saida" Type="DateTime" Nullable="false" />
+          <Property Name="dt_data" Type="DateTime" Nullable="false" />
+          <Property Name="vl_faltas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.aaaaaaa" FromRole="tb_controleponto" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_descontos">
+          <Key>
+            <PropertyRef Name="id_descontos" />
+          </Key>
+          <Property Name="id_descontos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="vl_inss" Type="Decimal" Nullable="false" />
+          <Property Name="vl_ir" Type="Decimal" />
+          <Property Name="vl_va" Type="Decimal" />
+          <Property Name="vl_vr" Type="Decimal" />
+          <Property Name="vl_vt" Type="Decimal" />
+          <Property Name="vl_planosaude" Type="Decimal" />
+          <Property Name="vl_planoodonto" Type="Decimal" />
+          <Property Name="vl_segurodevida" Type="Decimal" />
+          <NavigationProperty Name="tb_folha" Relationship="Self.id_descontos" FromRole="tb_descontos" ToRole="tb_folha" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.tb_descontos_ibfk_1" FromRole="tb_descontos" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_despesa">
+          <Key>
+            <PropertyRef Name="id_FluxAux" />
+          </Key>
+          <Property Name="id_FluxAux" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Funcinario" Type="Int32" Nullable="false" />
+          <Property Name="id_Estoque" Type="Int32" Nullable="false" />
+          <Property Name="vl_Despesa" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_estoque" Relationship="Self.id_estoooque" FromRole="tb_despesa" ToRole="tb_estoque" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.id_fuuuuuunc" FromRole="tb_despesa" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_estoque">
+          <Key>
+            <PropertyRef Name="id_estoque" />
+          </Key>
+          <Property Name="id_estoque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_forncedor" Type="Int32" Nullable="false" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="qnt_produto" Type="Int32" Nullable="false" />
+          <Property Name="dt_entrada" Type="DateTime" Nullable="false" />
+          <Property Name="dt_saida" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_despesa" Relationship="Self.id_estoooque" FromRole="tb_estoque" ToRole="tb_despesa" />
+          <NavigationProperty Name="tb_forncedor" Relationship="Self.id_for" FromRole="tb_estoque" ToRole="tb_forncedor" />
+          <NavigationProperty Name="tb_produto" Relationship="Self.id_pro" FromRole="tb_estoque" ToRole="tb_produto" />
+        </EntityType>
+        <EntityType Name="tb_folha">
+          <Key>
+            <PropertyRef Name="id_folha" />
+          </Key>
+          <Property Name="id_folha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_descontos" Type="Int32" Nullable="false" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="id_proventos" Type="Int32" Nullable="false" />
+          <Property Name="vl_valorBruto" Type="Decimal" Nullable="false" />
+          <Property Name="vl_valorLiquido" Type="Decimal" Nullable="false" />
+          <Property Name="bl_ferias" Type="Boolean" Nullable="false" />
+          <Property Name="bl_venderFerias" Type="Boolean" Nullable="false" />
+          <Property Name="bl_13salario" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tb_descontos" Relationship="Self.id_descontos" FromRole="tb_folha" ToRole="tb_descontos" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.id_funcionario" FromRole="tb_folha" ToRole="tb_funcionario" />
+          <NavigationProperty Name="tb_provento" Relationship="Self.id_proventos" FromRole="tb_folha" ToRole="tb_provento" />
+        </EntityType>
+        <EntityType Name="tb_forncedor">
+          <Key>
+            <PropertyRef Name="id_Forncedor" />
+          </Key>
+          <Property Name="id_Forncedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_Fornecedor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_endereco" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_cidade" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_tel" Type="Int32" Nullable="false" />
+          <Property Name="cnpj" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_conta" Relationship="Self.aa" FromRole="tb_forncedor" ToRole="tb_conta" />
+          <NavigationProperty Name="tb_estoque" Relationship="Self.id_for" FromRole="tb_forncedor" ToRole="tb_estoque" />
+          <NavigationProperty Name="tb_pedido_compra" Relationship="Self.id_fornencedor" FromRole="tb_forncedor" ToRole="tb_pedido_compra" />
+        </EntityType>
+        <EntityType Name="tb_funcionario">
+          <Key>
+            <PropertyRef Name="id_funcionario" />
+          </Key>
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_funcionario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_endereco" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_cargo" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_funcao" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rg" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpf" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_nasc" Type="DateTime" Nullable="false" />
+          <Property Name="vl_tel" Type="Int32" Nullable="false" />
+          <Property Name="vl_salario" Type="Decimal" Nullable="false" />
+          <Property Name="vl_cargahor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_contratação" Type="DateTime" Nullable="false" />
+          <Property Name="dt_demissao" Type="DateTime" Nullable="false" />
+          <Property Name="vl_fgts" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_controleponto" Relationship="Self.aaaaaaa" FromRole="tb_funcionario" ToRole="tb_controleponto" />
+          <NavigationProperty Name="tb_descontos" Relationship="Self.tb_descontos_ibfk_1" FromRole="tb_funcionario" ToRole="tb_descontos" />
+          <NavigationProperty Name="tb_despesa" Relationship="Self.id_fuuuuuunc" FromRole="tb_funcionario" ToRole="tb_despesa" />
+          <NavigationProperty Name="tb_folha" Relationship="Self.id_funcionario" FromRole="tb_funcionario" ToRole="tb_folha" />
+          <NavigationProperty Name="tb_login" Relationship="Self.bskgd" FromRole="tb_funcionario" ToRole="tb_login" />
+          <NavigationProperty Name="tb_hora_extra" Relationship="Self.tb_hora_extra_ibfk_1" FromRole="tb_funcionario" ToRole="tb_hora_extra" />
+        </EntityType>
+        <EntityType Name="tb_hora_extra">
+          <Key>
+            <PropertyRef Name="id_hora_extra" />
+          </Key>
+          <Property Name="id_hora_extra" Type="Int32" Nullable="false" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="dt_data" Type="DateTime" Nullable="false" />
+          <Property Name="dt_horaEntrada" Type="Time" Nullable="false" />
+          <Property Name="dt_horaSaida" Type="Time" Nullable="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.tb_hora_extra_ibfk_1" FromRole="tb_hora_extra" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_login">
+          <Key>
+            <PropertyRef Name="id_login" />
+          </Key>
+          <Property Name="id_login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_funcionario" Type="Int32" Nullable="false" />
+          <Property Name="nm_usuario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_senha" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cd_confirmacao" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tb_funcionario" Relationship="Self.bskgd" FromRole="tb_login" ToRole="tb_funcionario" />
+        </EntityType>
+        <EntityType Name="tb_pedido_compra">
+          <Key>
+            <PropertyRef Name="id_pedido_compra" />
+          </Key>
+          <Property Name="id_pedido_compra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Fornecedor" Type="Int32" Nullable="false" />
+          <Property Name="dt_Compra" Type="DateTime" Nullable="false" />
+          <Property Name="ContaPagar" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="dt_vencimento" Type="DateTime" Nullable="false" />
+          <Property Name="dt_emissao" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_forncedor" Relationship="Self.id_fornencedor" FromRole="tb_pedido_compra" ToRole="tb_forncedor" />
+          <NavigationProperty Name="tb_pedido_compra_item" Relationship="Self.id_pedido_compra" FromRole="tb_pedido_compra" ToRole="tb_pedido_compra_item" />
+        </EntityType>
+        <EntityType Name="tb_pedido_compra_item">
+          <Key>
+            <PropertyRef Name="id_pedido_compra_item" />
+          </Key>
+          <Property Name="id_pedido_compra_item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="id_pedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_pedido_compra" Relationship="Self.id_pedido_compra" FromRole="tb_pedido_compra_item" ToRole="tb_pedido_compra" />
+          <NavigationProperty Name="tb_produto" Relationship="Self.id_pr" FromRole="tb_pedido_compra_item" ToRole="tb_produto" />
+        </EntityType>
+        <EntityType Name="tb_pedido_venda">
+          <Key>
+            <PropertyRef Name="id_pedido_venda" />
+          </Key>
+          <Property Name="id_pedido_venda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="dt_venda" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_cliente" Relationship="Self.pedido_cliente" FromRole="tb_pedido_venda" ToRole="tb_cliente" />
+          <NavigationProperty Name="tb_pedido_venda_item" Relationship="Self.pedido_venda_item_para_pedido_venda" FromRole="tb_pedido_venda" ToRole="tb_pedido_venda_item" />
+        </EntityType>
+        <EntityType Name="tb_pedido_venda_item">
+          <Key>
+            <PropertyRef Name="id_pedido_venda_item" />
+          </Key>
+          <Property Name="id_pedido_venda_item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_produto" Type="Int32" Nullable="false" />
+          <Property Name="id_pedido_venda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_pedido_venda" Relationship="Self.pedido_venda_item_para_pedido_venda" FromRole="tb_pedido_venda_item" ToRole="tb_pedido_venda" />
+          <NavigationProperty Name="tb_produto" Relationship="Self.id_produt" FromRole="tb_pedido_venda_item" ToRole="tb_produto" />
+        </EntityType>
+        <EntityType Name="tb_produto">
+          <Key>
+            <PropertyRef Name="id_produto" />
+          </Key>
+          <Property Name="id_produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_produto" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_marca" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_categoria" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_preco" Type="Decimal" Nullable="false" />
+          <Property Name="nm_lote" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_validade" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_estoque" Relationship="Self.id_pro" FromRole="tb_produto" ToRole="tb_estoque" />
+          <NavigationProperty Name="tb_pedido_compra_item" Relationship="Self.id_pr" FromRole="tb_produto" ToRole="tb_pedido_compra_item" />
+          <NavigationProperty Name="tb_pedido_venda_item" Relationship="Self.id_produt" FromRole="tb_produto" ToRole="tb_pedido_venda_item" />
+        </EntityType>
+        <EntityType Name="tb_provento">
+          <Key>
+            <PropertyRef Name="id_provento" />
+          </Key>
+          <Property Name="id_provento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt_horasextras" Type="DateTime" Nullable="false" />
+          <Property Name="dt_adicnoturno" Type="DateTime" Nullable="false" />
+          <Property Name="vl_Perioclosidade" Type="Decimal" Nullable="false" />
+          <Property Name="vl_Insulibridade" Type="Decimal" Nullable="false" />
+          <Property Name="vl_Gratificacao" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="tb_folha" Relationship="Self.id_proventos" FromRole="tb_provento" ToRole="tb_folha" />
+        </EntityType>
+        <Association Name="pedido_cliente">
+          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="1" />
+          <End Role="tb_pedido_venda" Type="Self.tb_pedido_venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="tb_pedido_venda">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aa">
+          <End Role="tb_forncedor" Type="Self.tb_forncedor" Multiplicity="1" />
+          <End Role="tb_conta" Type="Self.tb_conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_forncedor">
+              <PropertyRef Name="id_Forncedor" />
+            </Principal>
+            <Dependent Role="tb_conta">
+              <PropertyRef Name="id_fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aaaaaaa">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_controleponto" Type="Self.tb_controleponto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_controleponto">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_descontos">
+          <End Role="tb_descontos" Type="Self.tb_descontos" Multiplicity="1" />
+          <End Role="tb_folha" Type="Self.tb_folha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_descontos">
+              <PropertyRef Name="id_descontos" />
+            </Principal>
+            <Dependent Role="tb_folha">
+              <PropertyRef Name="id_descontos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_descontos_ibfk_1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_descontos" Type="Self.tb_descontos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_descontos">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_estoooque">
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="1" />
+          <End Role="tb_despesa" Type="Self.tb_despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_estoque">
+              <PropertyRef Name="id_estoque" />
+            </Principal>
+            <Dependent Role="tb_despesa">
+              <PropertyRef Name="id_Estoque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_fuuuuuunc">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_despesa" Type="Self.tb_despesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_despesa">
+              <PropertyRef Name="id_Funcinario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_for">
+          <End Role="tb_forncedor" Type="Self.tb_forncedor" Multiplicity="1" />
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_forncedor">
+              <PropertyRef Name="id_Forncedor" />
+            </Principal>
+            <Dependent Role="tb_estoque">
+              <PropertyRef Name="id_forncedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pro">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_estoque" Type="Self.tb_estoque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_estoque">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_funcionario">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_folha" Type="Self.tb_folha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_folha">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_proventos">
+          <End Role="tb_provento" Type="Self.tb_provento" Multiplicity="1" />
+          <End Role="tb_folha" Type="Self.tb_folha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_provento">
+              <PropertyRef Name="id_provento" />
+            </Principal>
+            <Dependent Role="tb_folha">
+              <PropertyRef Name="id_proventos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_fornencedor">
+          <End Role="tb_forncedor" Type="Self.tb_forncedor" Multiplicity="1" />
+          <End Role="tb_pedido_compra" Type="Self.tb_pedido_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_forncedor">
+              <PropertyRef Name="id_Forncedor" />
+            </Principal>
+            <Dependent Role="tb_pedido_compra">
+              <PropertyRef Name="id_Fornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bskgd">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_login" Type="Self.tb_login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_login">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tb_hora_extra_ibfk_1">
+          <End Role="tb_funcionario" Type="Self.tb_funcionario" Multiplicity="1" />
+          <End Role="tb_hora_extra" Type="Self.tb_hora_extra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_funcionario">
+              <PropertyRef Name="id_funcionario" />
+            </Principal>
+            <Dependent Role="tb_hora_extra">
+              <PropertyRef Name="id_funcionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pedido_compra">
+          <End Role="tb_pedido_compra" Type="Self.tb_pedido_compra" Multiplicity="1" />
+          <End Role="tb_pedido_compra_item" Type="Self.tb_pedido_compra_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pedido_compra">
+              <PropertyRef Name="id_pedido_compra" />
+            </Principal>
+            <Dependent Role="tb_pedido_compra_item">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_pr">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_pedido_compra_item" Type="Self.tb_pedido_compra_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_pedido_compra_item">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedido_venda_item_para_pedido_venda">
+          <End Role="tb_pedido_venda" Type="Self.tb_pedido_venda" Multiplicity="1" />
+          <End Role="tb_pedido_venda_item" Type="Self.tb_pedido_venda_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pedido_venda">
+              <PropertyRef Name="id_pedido_venda" />
+            </Principal>
+            <Dependent Role="tb_pedido_venda_item">
+              <PropertyRef Name="id_pedido_venda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="id_produt">
+          <End Role="tb_produto" Type="Self.tb_produto" Multiplicity="1" />
+          <End Role="tb_pedido_venda_item" Type="Self.tb_pedido_venda_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_produto">
+              <PropertyRef Name="id_produto" />
+            </Principal>
+            <Dependent Role="tb_pedido_venda_item">
+              <PropertyRef Name="id_produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a4fdf1_basiEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" />
+          <EntitySet Name="tb_conta" EntityType="Self.tb_conta" />
+          <EntitySet Name="tb_controleponto" EntityType="Self.tb_controleponto" />
+          <EntitySet Name="tb_descontos" EntityType="Self.tb_descontos" />
+          <EntitySet Name="tb_despesa" EntityType="Self.tb_despesa" />
+          <EntitySet Name="tb_estoque" EntityType="Self.tb_estoque" />
+          <EntitySet Name="tb_folha" EntityType="Self.tb_folha" />
+          <EntitySet Name="tb_forncedor" EntityType="Self.tb_forncedor" />
+          <EntitySet Name="tb_funcionario" EntityType="Self.tb_funcionario" />
+          <EntitySet Name="tb_hora_extra" EntityType="Self.tb_hora_extra" />
+          <EntitySet Name="tb_login" EntityType="Self.tb_login" />
+          <EntitySet Name="tb_pedido_compra" EntityType="Self.tb_pedido_compra" />
+          <EntitySet Name="tb_pedido_compra_item" EntityType="Self.tb_pedido_compra_item" />
+          <EntitySet Name="tb_pedido_venda" EntityType="Self.tb_pedido_venda" />
+          <EntitySet Name="tb_pedido_venda_item" EntityType="Self.tb_pedido_venda_item" />
+          <EntitySet Name="tb_produto" EntityType="Self.tb_produto" />
+          <EntitySet Name="tb_provento" EntityType="Self.tb_provento" />
+          <AssociationSet Name="pedido_cliente" Association="Self.pedido_cliente">
+            <End Role="tb_cliente" EntitySet="tb_cliente" />
+            <End Role="tb_pedido_venda" EntitySet="tb_pedido_venda" />
+          </AssociationSet>
+          <AssociationSet Name="aa" Association="Self.aa">
+            <End Role="tb_forncedor" EntitySet="tb_forncedor" />
+            <End Role="tb_conta" EntitySet="tb_conta" />
+          </AssociationSet>
+          <AssociationSet Name="aaaaaaa" Association="Self.aaaaaaa">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_controleponto" EntitySet="tb_controleponto" />
+          </AssociationSet>
+          <AssociationSet Name="id_descontos" Association="Self.id_descontos">
+            <End Role="tb_descontos" EntitySet="tb_descontos" />
+            <End Role="tb_folha" EntitySet="tb_folha" />
+          </AssociationSet>
+          <AssociationSet Name="tb_descontos_ibfk_1" Association="Self.tb_descontos_ibfk_1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_descontos" EntitySet="tb_descontos" />
+          </AssociationSet>
+          <AssociationSet Name="id_estoooque" Association="Self.id_estoooque">
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+            <End Role="tb_despesa" EntitySet="tb_despesa" />
+          </AssociationSet>
+          <AssociationSet Name="id_fuuuuuunc" Association="Self.id_fuuuuuunc">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_despesa" EntitySet="tb_despesa" />
+          </AssociationSet>
+          <AssociationSet Name="id_for" Association="Self.id_for">
+            <End Role="tb_forncedor" EntitySet="tb_forncedor" />
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+          </AssociationSet>
+          <AssociationSet Name="id_pro" Association="Self.id_pro">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_estoque" EntitySet="tb_estoque" />
+          </AssociationSet>
+          <AssociationSet Name="id_funcionario" Association="Self.id_funcionario">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_folha" EntitySet="tb_folha" />
+          </AssociationSet>
+          <AssociationSet Name="id_proventos" Association="Self.id_proventos">
+            <End Role="tb_provento" EntitySet="tb_provento" />
+            <End Role="tb_folha" EntitySet="tb_folha" />
+          </AssociationSet>
+          <AssociationSet Name="id_fornencedor" Association="Self.id_fornencedor">
+            <End Role="tb_forncedor" EntitySet="tb_forncedor" />
+            <End Role="tb_pedido_compra" EntitySet="tb_pedido_compra" />
+          </AssociationSet>
+          <AssociationSet Name="bskgd" Association="Self.bskgd">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_login" EntitySet="tb_login" />
+          </AssociationSet>
+          <AssociationSet Name="tb_hora_extra_ibfk_1" Association="Self.tb_hora_extra_ibfk_1">
+            <End Role="tb_funcionario" EntitySet="tb_funcionario" />
+            <End Role="tb_hora_extra" EntitySet="tb_hora_extra" />
+          </AssociationSet>
+          <AssociationSet Name="id_pedido_compra" Association="Self.id_pedido_compra">
+            <End Role="tb_pedido_compra" EntitySet="tb_pedido_compra" />
+            <End Role="tb_pedido_compra_item" EntitySet="tb_pedido_compra_item" />
+          </AssociationSet>
+          <AssociationSet Name="id_pr" Association="Self.id_pr">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_pedido_compra_item" EntitySet="tb_pedido_compra_item" />
+          </AssociationSet>
+          <AssociationSet Name="pedido_venda_item_para_pedido_venda" Association="Self.pedido_venda_item_para_pedido_venda">
+            <End Role="tb_pedido_venda" EntitySet="tb_pedido_venda" />
+            <End Role="tb_pedido_venda_item" EntitySet="tb_pedido_venda_item" />
+          </AssociationSet>
+          <AssociationSet Name="id_produt" Association="Self.id_produt">
+            <End Role="tb_produto" EntitySet="tb_produto" />
+            <End Role="tb_pedido_venda_item" EntitySet="tb_pedido_venda_item" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_a4fdf1_basiModelStoreContainer" CdmEntityContainer="db_a4fdf1_basiEntities1">
+          <EntitySetMapping Name="tb_cliente">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_cliente">
+              <MappingFragment StoreEntitySet="tb_cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="nm_cliente" ColumnName="nm_cliente" />
+                <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
+                <ScalarProperty Name="nm_cidade" ColumnName="nm_cidade" />
+                <ScalarProperty Name="nm_email" ColumnName="nm_email" />
+                <ScalarProperty Name="vl_cpf" ColumnName="vl_cpf" />
+                <ScalarProperty Name="vl_tel" ColumnName="vl_tel" />
+                <ScalarProperty Name="vl_cep" ColumnName="vl_cep" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_conta">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_conta">
+              <MappingFragment StoreEntitySet="tb_conta">
+                <ScalarProperty Name="id_Conta" ColumnName="id_Conta" />
+                <ScalarProperty Name="id_fornecedor" ColumnName="id_fornecedor" />
+                <ScalarProperty Name="nm_referente" ColumnName="nm_referente" />
+                <ScalarProperty Name="dt_emissao" ColumnName="dt_emissao" />
+                <ScalarProperty Name="dt_venc_pago" ColumnName="dt_venc_pago" />
+                <ScalarProperty Name="ContaPagar" ColumnName="ContaPagar" />
+                <ScalarProperty Name="ContaReceber" ColumnName="ContaReceber" />
+                <ScalarProperty Name="bl_PagarReceber" ColumnName="bl_PagarReceber" />
+                <ScalarProperty Name="vl_conta" ColumnName="vl_conta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_controleponto">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_controleponto">
+              <MappingFragment StoreEntitySet="tb_controleponto">
+                <ScalarProperty Name="id_ControlePonto" ColumnName="id_ControlePonto" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="dt_entrada" ColumnName="dt_entrada" />
+                <ScalarProperty Name="dt_entrada_almoco" ColumnName="dt_entrada_almoco" />
+                <ScalarProperty Name="dt_saida_almoco" ColumnName="dt_saida_almoco" />
+                <ScalarProperty Name="dt_saida" ColumnName="dt_saida" />
+                <ScalarProperty Name="dt_data" ColumnName="dt_data" />
+                <ScalarProperty Name="vl_faltas" ColumnName="vl_faltas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_descontos">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_descontos">
+              <MappingFragment StoreEntitySet="tb_descontos">
+                <ScalarProperty Name="id_descontos" ColumnName="id_descontos" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="vl_inss" ColumnName="vl_inss" />
+                <ScalarProperty Name="vl_ir" ColumnName="vl_ir" />
+                <ScalarProperty Name="vl_va" ColumnName="vl_va" />
+                <ScalarProperty Name="vl_vr" ColumnName="vl_vr" />
+                <ScalarProperty Name="vl_vt" ColumnName="vl_vt" />
+                <ScalarProperty Name="vl_planosaude" ColumnName="vl_planosaude" />
+                <ScalarProperty Name="vl_planoodonto" ColumnName="vl_planoodonto" />
+                <ScalarProperty Name="vl_segurodevida" ColumnName="vl_segurodevida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_despesa">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_despesa">
+              <MappingFragment StoreEntitySet="tb_despesa">
+                <ScalarProperty Name="id_FluxAux" ColumnName="id_FluxAux" />
+                <ScalarProperty Name="id_Funcinario" ColumnName="id_Funcinario" />
+                <ScalarProperty Name="id_Estoque" ColumnName="id_Estoque" />
+                <ScalarProperty Name="vl_Despesa" ColumnName="vl_Despesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_estoque">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_estoque">
+              <MappingFragment StoreEntitySet="tb_estoque">
+                <ScalarProperty Name="id_estoque" ColumnName="id_estoque" />
+                <ScalarProperty Name="id_forncedor" ColumnName="id_forncedor" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="qnt_produto" ColumnName="qnt_produto" />
+                <ScalarProperty Name="dt_entrada" ColumnName="dt_entrada" />
+                <ScalarProperty Name="dt_saida" ColumnName="dt_saida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_folha">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_folha">
+              <MappingFragment StoreEntitySet="tb_folha">
+                <ScalarProperty Name="id_folha" ColumnName="id_folha" />
+                <ScalarProperty Name="id_descontos" ColumnName="id_descontos" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="id_proventos" ColumnName="id_proventos" />
+                <ScalarProperty Name="vl_valorBruto" ColumnName="vl_valorBruto" />
+                <ScalarProperty Name="vl_valorLiquido" ColumnName="vl_valorLiquido" />
+                <ScalarProperty Name="bl_ferias" ColumnName="bl_ferias" />
+                <ScalarProperty Name="bl_venderFerias" ColumnName="bl_venderFerias" />
+                <ScalarProperty Name="bl_13salario" ColumnName="bl_13salario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_forncedor">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_forncedor">
+              <MappingFragment StoreEntitySet="tb_forncedor">
+                <ScalarProperty Name="id_Forncedor" ColumnName="id_Forncedor" />
+                <ScalarProperty Name="nm_Fornecedor" ColumnName="nm_Fornecedor" />
+                <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
+                <ScalarProperty Name="nm_cidade" ColumnName="nm_cidade" />
+                <ScalarProperty Name="nm_email" ColumnName="nm_email" />
+                <ScalarProperty Name="vl_tel" ColumnName="vl_tel" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_funcionario">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_funcionario">
+              <MappingFragment StoreEntitySet="tb_funcionario">
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="nm_funcionario" ColumnName="nm_funcionario" />
+                <ScalarProperty Name="nm_email" ColumnName="nm_email" />
+                <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
+                <ScalarProperty Name="nm_cargo" ColumnName="nm_cargo" />
+                <ScalarProperty Name="nm_funcao" ColumnName="nm_funcao" />
+                <ScalarProperty Name="rg" ColumnName="rg" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="dt_nasc" ColumnName="dt_nasc" />
+                <ScalarProperty Name="vl_tel" ColumnName="vl_tel" />
+                <ScalarProperty Name="vl_salario" ColumnName="vl_salario" />
+                <ScalarProperty Name="vl_cargahor" ColumnName="vl_cargahor" />
+                <ScalarProperty Name="dt_contratação" ColumnName="dt_contratação" />
+                <ScalarProperty Name="dt_demissao" ColumnName="dt_demissao" />
+                <ScalarProperty Name="vl_fgts" ColumnName="vl_fgts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_hora_extra">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_hora_extra">
+              <MappingFragment StoreEntitySet="tb_hora_extra">
+                <ScalarProperty Name="id_hora_extra" ColumnName="id_hora_extra" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="dt_data" ColumnName="dt_data" />
+                <ScalarProperty Name="dt_horaEntrada" ColumnName="dt_horaEntrada" />
+                <ScalarProperty Name="dt_horaSaida" ColumnName="dt_horaSaida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_login">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_login">
+              <MappingFragment StoreEntitySet="tb_login">
+                <ScalarProperty Name="id_login" ColumnName="id_login" />
+                <ScalarProperty Name="id_funcionario" ColumnName="id_funcionario" />
+                <ScalarProperty Name="nm_usuario" ColumnName="nm_usuario" />
+                <ScalarProperty Name="nm_senha" ColumnName="nm_senha" />
+                <ScalarProperty Name="cd_confirmacao" ColumnName="cd_confirmacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pedido_compra">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_pedido_compra">
+              <MappingFragment StoreEntitySet="tb_pedido_compra">
+                <ScalarProperty Name="id_pedido_compra" ColumnName="id_pedido_compra" />
+                <ScalarProperty Name="id_Fornecedor" ColumnName="id_Fornecedor" />
+                <ScalarProperty Name="dt_Compra" ColumnName="dt_Compra" />
+                <ScalarProperty Name="ContaPagar" ColumnName="ContaPagar" />
+                <ScalarProperty Name="dt_vencimento" ColumnName="dt_vencimento" />
+                <ScalarProperty Name="dt_emissao" ColumnName="dt_emissao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pedido_compra_item">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_pedido_compra_item">
+              <MappingFragment StoreEntitySet="tb_pedido_compra_item">
+                <ScalarProperty Name="id_pedido_compra_item" ColumnName="id_pedido_compra_item" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pedido_venda">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_pedido_venda">
+              <MappingFragment StoreEntitySet="tb_pedido_venda">
+                <ScalarProperty Name="id_pedido_venda" ColumnName="id_pedido_venda" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="dt_venda" ColumnName="dt_venda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pedido_venda_item">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_pedido_venda_item">
+              <MappingFragment StoreEntitySet="tb_pedido_venda_item">
+                <ScalarProperty Name="id_pedido_venda_item" ColumnName="id_pedido_venda_item" />
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="id_pedido_venda" ColumnName="id_pedido_venda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_produto">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_produto">
+              <MappingFragment StoreEntitySet="tb_produto">
+                <ScalarProperty Name="id_produto" ColumnName="id_produto" />
+                <ScalarProperty Name="nm_produto" ColumnName="nm_produto" />
+                <ScalarProperty Name="nm_marca" ColumnName="nm_marca" />
+                <ScalarProperty Name="nm_categoria" ColumnName="nm_categoria" />
+                <ScalarProperty Name="vl_preco" ColumnName="vl_preco" />
+                <ScalarProperty Name="nm_lote" ColumnName="nm_lote" />
+                <ScalarProperty Name="dt_validade" ColumnName="dt_validade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_provento">
+            <EntityTypeMapping TypeName="db_a4fdf1_basiModel.tb_provento">
+              <MappingFragment StoreEntitySet="tb_provento">
+                <ScalarProperty Name="id_provento" ColumnName="id_provento" />
+                <ScalarProperty Name="dt_horasextras" ColumnName="dt_horasextras" />
+                <ScalarProperty Name="dt_adicnoturno" ColumnName="dt_adicnoturno" />
+                <ScalarProperty Name="vl_Perioclosidade" ColumnName="vl_Perioclosidade" />
+                <ScalarProperty Name="vl_Insulibridade" ColumnName="vl-Insulibridade" />
+                <ScalarProperty Name="vl_Gratificacao" ColumnName="vl_Gratificacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
